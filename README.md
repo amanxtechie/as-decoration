@@ -165,12 +165,17 @@ Open:
 
 ## Deployment (free tier)
 
-1. Push the repo to GitHub.
-2. Create a free **Neon** project and copy its `DATABASE_URL`.
-3. Render Dashboard → **New → Blueprint** → point at the repo (`render.yaml` provisions the service).
-4. Set `DATABASE_URL`, `JWT_SECRET` (auto-generated), and `CLIENT_ORIGIN` in the dashboard.
-5. Run the seed once against the hosted database: `DATABASE_URL=… npm run seed`.
-6. Attach a custom domain in the Render dashboard when ready.
+Full step-by-step instructions, including the `asdecoration.in` domain setup, are in
+**[DEPLOY.md](DEPLOY.md)**. The short version:
+
+1. Create a free **Neon** project (Singapore region) and copy its `DATABASE_URL`.
+2. Render Dashboard → **New → Blueprint** → point at the repo. `render.yaml` provisions
+   the service; supply `DATABASE_URL`, `ADMIN_EMAIL` and `ADMIN_PASSWORD` when prompted.
+3. Load the designs once: `DATABASE_URL=… npm run seed-showcase`
+4. Attach `asdecoration.in` in the Render dashboard and add the DNS records it shows.
+
+`npm start` applies the database schema and creates the first admin automatically, so
+there is **no manual migration step** — deploy, then seed content once.
 
 **One process** serves the API, the website and the admin dashboard, so there is no CORS
 configuration and no second service to pay for.

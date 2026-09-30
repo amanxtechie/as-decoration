@@ -1,41 +1,59 @@
-# Render blueprint — provisions the whole stack from one file.
-# 1. Push this repo to GitHub.
-# 2. Render Dashboard > New > Blueprint > point at this repo.
-# 3. Set DATABASE_URL (from your Neon project) and a strong JWT_SECRET.
+# Render blueprint — one service runs the API, the website and the admin panel.
+# Everything is served from a single origin, so there is no CORS setup and no
+# second service to pay for.
 #
-# Note: the free Postgres plan on Render is deleted after 30 days, so the
-# service below starts without a database. Attach Neon (free, permanent) in
-# the dashboard and set DATABASE_URL, then deploy.
+# 1. Push the repo (already done: https://github.com/amanxtechie/as-decoration)
+# 2. Render Dashboard > New > Blueprint > point at this repo
+# 3. Fill in the two `sync: false` values when prompted: DATABASE_URL and ADMIN_*
+# 4. After the first successful deploy, run the showcase seed once (see DEPLOY.md)
+#
+# NOTE: the free Postgres add-on on Render is deleted after 30 days, so this
+# blueprint intentionally does not provision a database. Use Neon (free,
+# permanent) and set DATABASE_URL instead.
 
 services:
   - type: web
     name: as-decoration
     runtime: node
-    plan: free          # switch to "starter" ($7/mo) to stop the service sleeping
-    region: singapore   # closest to India
+    plan: free              # "starter" ($7/mo) removes the 15-minute idle sleep
+    region: singapore       # closest to India
     branch: main
     buildCommand: npm ci --omit=dev
     startCommand: npm start
     healthCheckPath: /api/health
     autoDeploy: true
+
     envVars:
       - key: NODE_ENV
         value: production
+
+      # From Neon: the connection string ending in ?sslmode=require
       - key: DATABASE_URL
-        sync: false      # set this to your Neon connection string
+        sync: false
+
       - key: JWT_SECRET
         generateValue: true
+
+      - key: ADMIN_EMAIL
+        sync: false          # used only to create the FIRST admin on an empty database
+
+      - key: ADMIN_PASSWORD
+        sync: false          # change it in Admin > Profile immediately after the first login
+
       - key: JWT_EXPIRES_IN
         value: 12h
+
+      - key: CLIENT_ORIGIN
+        value: https://asdecoration.in
+
       - key: WHATSAPP_NUMBER
         value: 917667999217
+
       - key: BUSINESS_NAME
         value: AS Decoration
+
       - key: MAX_UPLOAD_SIZE
         value: 8388608
-      - key: CLIENT_ORIGIN
-        sync: false      # set to your domain once the custom domain is attached
-      - key: ADMIN_EMAIL
-        sync: false
-      - key: ADMIN_PASSWORD
-        sync: false
+
+      - key: DB_POOL_MAX
+        value: 5             # keep low; free tiers cap concurrent connections

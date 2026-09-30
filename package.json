@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node backend/server.js",
     "dev": "node --watch backend/server.js",
-    "seed": "node backend/seed.js"
+    "seed": "node backend/seed.js",
+    "seed-showcase": "node backend/seed-showcase.js"
   },
   "engines": {
     "node": ">=18"
