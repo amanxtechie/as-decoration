@@ -8,9 +8,16 @@ import { env } from "./env.js";
 
 const { Pool } = pg;
 
-// Neon and other serverless providers hand out a pooled URL; strip the flag so
-// our own Pool does not multiplex twice.
-const connectionString = env.databaseUrl.replace(/[?&]pgbouncer=true/i, "");
+// Neon and other serverless providers hand out a pooled URL; strip the flags our
+// own Pool does not want so it does not multiplex twice or choke on libpq-only
+// parameters. `channel_binding` is a PostgreSQL 18 libpq feature that node-postgres
+// does not implement, and it is not required over a TLS connection we already verify.
+// `uselibpqcompat=true` pins the SSL-mode semantics so a future pg major release
+// does not silently change what `sslmode=require` means.
+const connectionString = env.databaseUrl
+  .replace(/[?&]pgbouncer=true/i, "")
+  .replace(/[?&]channel_binding=[^&]*/i, "")
+  .replace(/([?&])sslmode=require/i, "$1sslmode=require&uselibpqcompat=true");
 
 // Postgres returns BIGINT (int8) as a string by default to avoid precision loss.
 // Every id in this schema is SERIAL and fits safely in a JS number.
