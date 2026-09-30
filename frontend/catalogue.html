@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Catalogue — Wedding, Birthday &amp; Event Decoration | AS Decoration Bihar</title>
+  <meta name="description" content="Browse AS Decoration's full design catalogue — wedding stages, mandaps, floral setups, birthday themes, anniversary and corporate decor across Nalanda, Sheikhpura, Nawada and Lakhisarai." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#2a1040" />
+  <link rel="canonical" href="/catalogue.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header id="site-header"></header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="breadcrumbs"><a href="/index.html">Home</a> / Catalogue</p>
+        <h1>Design catalogue</h1>
+        <p>Filter by occasion and style. Nothing here is a fixed package — every setup is adapted to your venue, guest count and budget once we talk.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar">
+          <div class="search-box" style="flex:1 1 240px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="search" id="q" placeholder="Search designs, styles, towns…" aria-label="Search designs" />
+          </div>
+          <select id="fCategory" aria-label="Filter by category"><option value="">All occasions</option></select>
+          <select id="fSubcategory" aria-label="Filter by style" disabled><option value="">All styles</option></select>
+          <select id="fSort" aria-label="Sort designs">
+            <option value="">Featured first</option>
+            <option value="newest">Newest</option>
+            <option value="popular">Most viewed</option>
+            <option value="name">A–Z</option>
+          </select>
+          <span class="filter-bar__count" id="count"></span>
+        </div>
+
+        <div class="saved-bar" id="savedBar"></div>
+
+        <div class="grid grid--3" id="grid" style="margin-top:2rem">
+          <div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>
+        </div>
+
+        <nav class="pagination" id="pagination" aria-label="Catalogue pages" hidden></nav>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container">
+        <h2>Seen something you like?</h2>
+        <p>Send your shortlist straight to us on WhatsApp and we'll suggest what fits your venue.</p>
+        <a href="/contact.html" class="btn btn--gold">Send an enquiry</a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/location.js"></script>
+  <script src="/assets/js/whatsapp.js"></script>
+  <script src="/assets/js/saved.js"></script>
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/catalogue-page.js"></script>
+</body>
+</html>

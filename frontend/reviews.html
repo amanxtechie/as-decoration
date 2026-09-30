@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Reviews — AS Decoration, Bihar</title>
+  <meta name="description" content="Read what clients across Nalanda, Sheikhpura, Nawada and Lakhisarai say about AS Decoration's event decoration work, and share your own experience." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#2a1040" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header id="site-header"></header>
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="breadcrumbs"><a href="/index.html">Home</a> / Reviews</p>
+        <h1>What clients say</h1>
+        <p>Every review here was written by a client after an event we decorated.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div id="summary"></div>
+        <div class="review-list" id="list"></div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container" style="max-width:680px">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Your turn</span>
+          <h2>Share your experience</h2>
+          <p>We'd genuinely like to hear how your event went.</p>
+        </div>
+
+        <form class="form" id="reviewForm" style="background:var(--white);padding:2rem;border-radius:20px;border:1px solid var(--line)">
+          <div class="form-row">
+            <div class="field">
+              <label for="rvName">Your name <span class="req">*</span></label>
+              <input id="rvName" name="name" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="rvLocation">Town / City</label>
+              <input id="rvLocation" name="location" placeholder="e.g. Rajgir" autocomplete="address-level2" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="rvEvent">Occasion</label>
+              <select id="rvEvent" name="eventType">
+                <option value="">Select…</option>
+                <option>Wedding</option><option>Birthday</option><option>Anniversary</option>
+                <option>Engagement</option><option>Corporate Event</option><option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="rvRating">Rating <span class="req">*</span></label>
+              <select id="rvRating" name="rating">
+                <option value="5">★★★★★ Excellent</option>
+                <option value="4">★★★★☆ Very good</option>
+                <option value="3">★★★☆ Good</option>
+                <option value="2">★★☆☆ Below average</option>
+                <option value="1">★☆☆☆☆ Poor</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="rvText">Your review <span class="req">*</span></label>
+            <textarea id="rvText" name="text" rows="4" required placeholder="How was the setup, the coordination, the finish?" minlength="5"></textarea>
+          </div>
+          <div class="hp-field" aria-hidden="true">
+            <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+          <button type="submit" class="btn btn--gold btn--block">Submit review</button>
+          <p class="hint" style="text-align:center">Reviews are checked by us before they appear.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="max-width:680px">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Community</span>
+          <h2>Share your photos</h2>
+          <p>Decorated an event with us? Send your own pictures — they appear here once approved.</p>
+        </div>
+        <form class="form" id="uploadForm" style="background:var(--white);padding:2rem;border-radius:20px;border:1px solid var(--line)">
+          <div class="form-row">
+            <div class="field">
+              <label for="upName">Your name</label>
+              <input id="upName" name="name" />
+            </div>
+            <div class="field">
+              <label for="upEvent">Occasion</label>
+              <input id="upEvent" name="eventType" placeholder="Wedding / Birthday" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="upFile">Photo <span class="req">*</span></label>
+            <input id="upFile" name="image" type="file" accept="image/*" required />
+            <span class="hint">JPG, PNG or WEBP up to 8 MB.</span>
+          </div>
+          <div class="hp-field" aria-hidden="true">
+            <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+          <button type="submit" class="btn btn--gold btn--block">Submit photo</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/location.js"></script>
+  <script src="/assets/js/whatsapp.js"></script>
+  <script src="/assets/js/saved.js"></script>
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/reviews-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "AS Decoration",
+  "short_name": "AS Decoration",
+  "description": "Premium wedding, birthday, anniversary and corporate decoration across Nalanda, Sheikhpura, Nawada and Lakhisarai.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fbf8f3",
+  "theme_color": "#2a1040",
+  "lang": "en-IN",
+  "icons": []
+}

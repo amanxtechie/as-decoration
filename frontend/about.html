@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — AS Decoration, Nalanda &amp; Bihar</title>
+  <meta name="description" content="AS Decoration is a premium event decoration studio serving Nalanda, Sheikhpura, Nawada and Lakhisarai. Learn how we work and why every setup is bespoke." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#2a1040" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header id="site-header"></header>
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="breadcrumbs"><a href="/index.html">Home</a> / About</p>
+        <h1>Crafting elegant celebrations in Bihar</h1>
+        <p>We decorate weddings, birthdays, anniversaries and corporate events across Nalanda, Sheikhpura, Nawada and Lakhisarai.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="stat-row" style="margin-bottom:4rem">
+          <div class="stat-box"><strong>4</strong><span>districts served</span></div>
+          <div class="stat-box"><strong id="statProjects">—</strong><span>projects completed</span></div>
+          <div class="stat-box"><strong id="statRating">—</strong><span>average rating</span></div>
+          <div class="stat-box"><strong>Same day</strong><span>WhatsApp replies</span></div>
+        </div>
+
+        <div class="about-grid">
+          <div class="prose">
+            <span class="eyebrow">Our approach</span>
+            <h2 style="margin-bottom:1rem">Nothing is templated</h2>
+            <p>
+              The decoration industry in this region usually runs on fixed packages: the same
+              arch, the same lights, the same backdrop, scaled up or down. We don't do that.
+              Every event starts with a conversation about your venue, your guest count and
+              what you actually want it to feel like.
+            </p>
+            <p>
+              Our palette leans into deep royal purple, metallic gold and warm ivory — colours
+              that photograph well under both evening lights and daylight, and that suit the
+              kind of celebrations we're usually asked to decorate.
+            </p>
+            <h2>How we work</h2>
+            <ul>
+              <li>You send us your date, venue and a reference photo — on WhatsApp or in the form</li>
+              <li>We come back with ideas and a quote, usually the same day</li>
+              <li>We visit or review the venue photos before finalising the design</li>
+              <li>Setup happens early on the day, coordinated by one point of contact throughout</li>
+              <li>We clear after the event unless you've asked us to stay</li>
+            </ul>
+            <h2>On pricing</h2>
+            <p>
+              We don't publish prices on this website, deliberately. Decoration cost moves a
+              lot with florals, material, venue size and guest count — a number on a website
+              would either be wrong or a trap. Talk to us and you'll get an honest figure
+              tailored to what you have in mind.
+            </p>
+          </div>
+          <div style="display:grid;gap:1rem" id="aboutPhotos">
+            <!-- Filled from /api/designs so these are never hardcoded media ids,
+                 which break the moment the owner replaces a photo. -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Where we work</span>
+          <h2>Areas we serve</h2>
+        </div>
+        <div class="grid grid--4" id="areaGrid"></div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container">
+        <h2>Planning something?</h2>
+        <p>Tell us the date and venue — we'll take it from there.</p>
+        <a href="/contact.html" class="btn btn--gold">Send an enquiry</a>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/ui.js"></script>
+  <script src="/assets/js/location.js"></script>
+  <script src="/assets/js/whatsapp.js"></script>
+  <script src="/assets/js/saved.js"></script>
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/about-page.js"></script>
+</body>
+</html>

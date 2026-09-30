@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — AS Decoration</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#2a1040" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/admin/assets/css/admin.css" />
+</head>
+<body>
+  <!-- ================= Login ================= -->
+  <div class="login-screen" id="loginScreen">
+    <form class="login-card" id="loginForm">
+      <div class="login-brand">AS</div>
+      <h1>AS Decoration</h1>
+      <p class="sub">Sign in to manage designs, photos and enquiries.</p>
+      <div class="alert alert--err" id="loginError" hidden></div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" required />
+      </div>
+      <button class="btn btn--gold btn--block" type="submit">Sign in</button>
+    </form>
+  </div>
+
+  <!-- ================= Shell ================= -->
+  <div class="shell" id="adminShell" hidden>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__brand">
+        <div class="sidebar__mark">AS</div>
+        <div class="sidebar__title">AS <span>Decoration</span></div>
+      </div>
+      <nav id="nav">
+        <a href="#dashboard" data-view="dashboard" class="is-active">Dashboard</a>
+        <a href="#enquiries" data-view="enquiries">Enquiries <span class="nav-count" data-count="newEnquiries" hidden></span></a>
+        <a href="#designs" data-view="designs">Designs</a>
+        <a href="#categories" data-view="categories">Home Sections</a>
+        <a href="#media" data-view="media">Photos <span class="nav-count" data-count="placeholders" hidden></span></a>
+        <a href="#social" data-view="social">Social Links</a>
+        <a href="#profile" data-view="profile">Profile</a>
+      </nav>
+      <div class="sidebar__foot">
+        <button id="logoutBtn" type="button">Sign out</button>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+        <h1 id="viewTitle">Dashboard</h1>
+        <span class="topbar__spacer"></span>
+        <span class="topbar__user" id="whoami"></span>
+        <a class="btn btn--ghost btn--sm" href="/" target="_blank" rel="noopener">View site ↗</a>
+      </header>
+
+      <!-- Dashboard -->
+      <section class="view" data-view="dashboard" hidden>
+        <div id="placeholderAlert"></div>
+        <div class="stat-grid" id="statGrid"></div>
+
+        <div class="panel">
+          <div class="panel__head"><h2>Enquiries over the last 30 days</h2></div>
+          <div id="timelineChart"></div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="panel">
+            <div class="panel__head"><h3>Where enquiries come from</h3></div>
+            <div id="areaChart"></div>
+          </div>
+          <div class="panel">
+            <div class="panel__head"><h3>By occasion</h3></div>
+            <div id="eventChart"></div>
+          </div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="panel">
+            <div class="panel__head"><h3>Funnel (30 days)</h3></div>
+            <div class="funnel" id="funnel"></div>
+          </div>
+          <div class="panel">
+            <div class="panel__head"><h3>Most viewed designs</h3></div>
+            <div id="topDesigns"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head"><h3>Recent enquiries</h3><span class="spacer"></span>
+            <button class="btn btn--ghost btn--sm" data-goto="enquiries">See all</button></div>
+          <div class="table-wrap"><table id="recentEnq"></table></div>
+        </div>
+      </section>
+
+      <!-- Enquiries -->
+      <section class="view" data-view="enquiries" hidden>
+        <div class="panel">
+          <div class="panel__head">
+            <h2>Enquiries</h2><span class="spacer"></span>
+            <input id="enqSearch" placeholder="Search name, phone, town…" style="padding:.5rem .8rem;border:1px solid var(--line);border-radius:999px" />
+            <button class="btn btn--ghost btn--sm" id="exportCsv">Export CSV</button>
+          </div>
+          <div class="tabs" id="enqTabs"></div>
+          <div class="table-wrap"><table id="enqTable"></table></div>
+        </div>
+      </section>
+
+      <!-- Designs -->
+      <section class="view" data-view="designs" hidden>
+        <div class="panel">
+          <div class="panel__head">
+            <h2>Designs</h2><span class="spacer"></span>
+            <button class="btn btn--gold btn--sm" id="addDesign">+ New design</button>
+          </div>
+          <p class="muted" style="margin-bottom:1rem">
+            Each design can hold up to 8 photos. The first photo is the cover shown in the catalogue.
+          </p>
+          <div class="table-wrap"><table id="designTable"></table></div>
+        </div>
+      </section>
+
+      <!-- Home Sections: the headings that build the homepage -->
+      <section class="view" data-view="categories" hidden>
+        <div class="panel">
+          <div class="panel__head">
+            <h2>Home Sections</h2><span class="spacer"></span>
+            <button class="btn btn--gold btn--sm" id="addCategory">+ New section</button>
+          </div>
+          <p class="muted" style="margin-bottom:1rem">
+            These are the big headings on the homepage (Wedding, Birthday, Shop Decoration…) and the
+            smaller headings under them (Stage, Mehendi, Haldi, Car Decoration…).
+            Switch one <strong>off</strong> to hide it from the homepage — nothing is deleted, and its
+            photos stay safe. Use the arrows to change the order.
+          </p>
+          <div id="taxonomyTree"></div>
+        </div>
+      </section>
+
+      <!-- Media -->
+      <section class="view" data-view="media" hidden>
+        <div class="panel">
+          <div class="panel__head"><h2>Photo library</h2><span class="spacer"></span>
+            <span class="muted" id="storageInfo"></span></div>
+          <div class="alert alert--warn" id="phHelp"></div>
+          <div class="dropzone" id="mediaDrop">
+            <strong>Tap to choose photos, or drag them here</strong>
+            JPG, PNG or WEBP · up to 8 MB each · several at once is fine
+            <input type="file" id="mediaInput" accept="image/*" multiple hidden />
+          </div>
+          <div class="progress" id="mediaProgress" hidden><div class="progress__fill" style="width:0"></div></div>
+          <div class="media-grid" id="mediaGrid" style="margin-top:1.25rem"></div>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+
+      <!-- Events -->
+
+      <!-- Reviews -->
+
+      <!-- Submissions -->
+
+      <!-- Social -->
+      <section class="view" data-view="social" hidden>
+        <div class="panel">
+          <div class="panel__head"><h2>Instagram &amp; YouTube</h2></div>
+          <p class="muted" style="margin-bottom:1.25rem">
+            These links appear at the bottom of every page on the website. Paste your real profile
+            links below — save as soon as you see a new design go live.
+          </p>
+          <div id="socialCards" style="display:flex;flex-direction:column;gap:1rem"></div>
+          <div class="hint" style="margin-top:1.25rem">
+            Switch a link off to hide it from the footer without deleting it.
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile -->
+      <section class="view" data-view="profile" hidden>
+        <div class="panel">
+          <div class="panel__head"><h2>Your profile</h2></div>
+          <div id="profileInfo" class="muted" style="margin-bottom:1rem"></div>
+          <form id="profileForm">
+            <div class="form-row">
+              <div class="field"><label>Name</label><input id="pfName" /></div>
+              <div class="field"><label>Email</label><input id="pfEmail" type="email" /></div>
+            </div>
+            <button class="btn btn--sm" type="submit">Save profile</button>
+          </form>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head"><h2>Change password</h2></div>
+          <form id="passwordForm">
+            <div class="field"><label>Current password</label><input id="pwCurrent" type="password" autocomplete="current-password" required /></div>
+            <div class="field"><label>New password</label><input id="pwNew" type="password" autocomplete="new-password" minlength="8" required />
+              <span class="hint">At least 8 characters.</span></div>
+            <div class="field"><label>Confirm new password</label><input id="pwConfirm" type="password" autocomplete="new-password" minlength="8" required /></div>
+            <button class="btn btn--sm" type="submit">Update password</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ================= Modals ================= -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop"></div>
+    <div class="modal__box" id="modalBox">
+      <button class="modal__close" data-close aria-label="Close">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/admin/assets/js/admin.js"></script>
+</body>
+</html>

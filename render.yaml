@@ -1,0 +1,41 @@
+# Render blueprint — provisions the whole stack from one file.
+# 1. Push this repo to GitHub.
+# 2. Render Dashboard > New > Blueprint > point at this repo.
+# 3. Set DATABASE_URL (from your Neon project) and a strong JWT_SECRET.
+#
+# Note: the free Postgres plan on Render is deleted after 30 days, so the
+# service below starts without a database. Attach Neon (free, permanent) in
+# the dashboard and set DATABASE_URL, then deploy.
+
+services:
+  - type: web
+    name: as-decoration
+    runtime: node
+    plan: free          # switch to "starter" ($7/mo) to stop the service sleeping
+    region: singapore   # closest to India
+    branch: main
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false      # set this to your Neon connection string
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 12h
+      - key: WHATSAPP_NUMBER
+        value: 917667999217
+      - key: BUSINESS_NAME
+        value: AS Decoration
+      - key: MAX_UPLOAD_SIZE
+        value: 8388608
+      - key: CLIENT_ORIGIN
+        sync: false      # set to your domain once the custom domain is attached
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
